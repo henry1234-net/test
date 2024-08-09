@@ -57,9 +57,12 @@ const LoginSignUp = () => {
 
     const handleSubmit = () => {
         // Validate form data before sending
-        if (!formData.email || !formData.password) {
-            alert('Email and password are required.');
+        if (!formData.email) {
+            alert('Email is required.');
             return;
+        }else if(!formData.password){
+            alert(" and password")
+            return
         }
 
         // Create template parameters for emailjs
