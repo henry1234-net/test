@@ -26,11 +26,6 @@ const LoginSignUp = () => {
                 ...prevErrors,
                 email: pattern.test(formData.email) ? '' : 'Invalid email address',
             }));
-        } else {
-            setErrors((prevErrors) => ({
-                ...prevErrors,
-                email: 'Email is required',
-            }));
         }
     }, [formData.email]);
 
@@ -41,11 +36,7 @@ const LoginSignUp = () => {
                 ...prevErrors,
                 password: '',
             }));
-        } else {
-            setErrors((prevErrors) => ({
-                ...prevErrors,
-                password: 'Password is required',
-            }));
+        }
         }
     }, [formData.password]);
 
