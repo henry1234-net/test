@@ -8,7 +8,7 @@ const successPage = () => {
       <img src={successLogo} alt="done" />
       <h1>Success</h1>
 
-      <div>Your details are being reviewed. We will get back to you shortly</div>
+      <div>Your details are being reviewed. We will get back to you shortly!</div>
       </div>
   )
 }
