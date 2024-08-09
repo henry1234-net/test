@@ -1,0 +1,156 @@
+*{
+    font-size: 14px;
+}
+
+.Container{
+    display: flex;
+    flex-direction: row;
+    background: rgb(253, 253, 253);
+    height: 100vh;
+    width: 100%;
+}
+
+.header{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.header .text{
+    font-weight: 450;
+    font-size: 22px;
+}
+
+.header{
+    display: none;
+    opacity: 0;
+    transform: translateX(0);
+}
+
+.header.active{
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.text{
+    margin: 0;
+    padding: 0;
+}
+
+h4{
+    margin: 0;
+    line-height: 1;
+    font-weight: normal;
+}
+
+h4.blue{
+    font-weight: 500;
+    margin-top: 0;
+    line-height: .5;
+    color: #1a73e9;
+    transition: .2s ease;
+}
+
+h4.blue:active{
+    color: #0351b8;
+}
+
+.user .text{
+    font-size: 12px;
+}
+
+img.google{
+    width: 80px;
+    height: auto;
+}
+
+img.user{
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+}
+
+div.user{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputs{margin-top: 50px;}
+
+.error{
+    color: red;
+    font-weight: 500;
+    line-height: .2;
+}
+
+.password{
+    margin: 10px 0 50px 0;
+    display: flex;
+    align-items: center;
+}
+
+.password input{
+    margin-right: 15px;
+}
+
+.passwordInput{
+    padding: 10px;
+    font-size: 13px;
+    width: 80vw;
+    border-radius: 3px;
+    border: .1rem solid #333333;
+}
+
+.passwordInput:focus{
+    border: .15rem solid #1a73e9;
+    outline: none;
+}
+
+label{
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.submitContainer{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #3079ff;
+    padding: 7px 20px;
+    border-radius: 3px;
+    margin: 20px;
+    color: white;
+    transition: .2s ease;
+}
+
+.submitContainer:hover{
+    cursor: pointer;
+}
+
+.submitContainer:active{
+    transform: scale(0.95);
+}
+
+
+/*----------------------------------------------------------------------------------------------------------*/
+
+.successContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.successContainer h1{font-size: 22px;}
+
+.successContainer img{
+    width: 60px;
+    height: 60px;
+}
