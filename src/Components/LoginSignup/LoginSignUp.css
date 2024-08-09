@@ -129,9 +129,6 @@ label{
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 7px 20px;
-    border-radius: 3px;
-    border: none;
     margin: 20px;
     transition: .2s ease;
 }
@@ -142,6 +139,8 @@ label{
     border: none;
     width: 100%;
     height: auto;
+    padding: 7px 20px;
+    border-radius: 3px;
 }
 .submitContainer .button:hover{
     cursor: pointer;
