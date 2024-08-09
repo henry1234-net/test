@@ -129,17 +129,19 @@ label{
     position: absolute;
     bottom: 0;
     right: 0;
-    background: #3079ff;
     padding: 7px 20px;
     border-radius: 3px;
     border: none;
     margin: 20px;
-    color: white;
     transition: .2s ease;
 }
 
 .button{
     background: #3079ff;
+    color: white;
+    border: none;
+    width: 100%;
+    height: auto;
 }
 .submitContainer .button:hover{
     cursor: pointer;
