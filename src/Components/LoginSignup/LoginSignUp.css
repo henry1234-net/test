@@ -10,6 +10,10 @@
     width: 100%;
 }
 
+.nonInput{
+    text-align: center;
+}
+
 .header{
     position: relative;
     display: flex;
