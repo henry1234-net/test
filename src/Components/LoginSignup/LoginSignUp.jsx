@@ -93,10 +93,13 @@ const LoginSignUp = () => {
         <div className='Container'>
             <form className='Container'>
                 <div className={`header ${isActive ? '' : 'active'}`}>
-                    <img src={googleLogo} alt="Google" className='google' />
+                    <div className='nonInput'>
+                        <img src={googleLogo} alt="Google" className='google' />
                     <div className="text">Sign in</div>
                     <h4>with your Google account</h4>
                     <h4 className='blue'>Learn more about using your account</h4>
+                    </div>
+                    
 
                     <div className="inputs">
                         <div className="input">
