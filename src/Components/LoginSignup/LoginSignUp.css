@@ -125,7 +125,7 @@ label{
     justify-content: center;
 }
 
-.submitContainer .button{
+.submitContainer{
     position: absolute;
     bottom: 0;
     right: 0;
@@ -138,6 +138,9 @@ label{
     transition: .2s ease;
 }
 
+.button{
+    background: #3079ff;
+}
 .submitContainer .button:hover{
     cursor: pointer;
 }
