@@ -60,7 +60,7 @@
     font-weight: normal;
 }
 
-.nonInput h4.blue{
+.nonInput h4.blue, h4.blue{
     font-weight: 500;
     margin-top: 7px;
     line-height: .5;
@@ -68,7 +68,7 @@
     transition: .2s ease;
 }
 
-.nonInput h4.blue:active{
+.nonInput h4.blue:active, h4.blue:active{
     color: #0351b8;
 }
 
