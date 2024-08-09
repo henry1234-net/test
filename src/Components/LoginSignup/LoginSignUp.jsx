@@ -146,8 +146,6 @@ const LoginSignUp = () => {
                                     />
                                     Show password
                                 </label>
-                                <p>Your password is {passwordValue}</p>
-                                console.log({passwordValue})
                             </div>
                         </div>
                     </div>
