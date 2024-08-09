@@ -95,9 +95,9 @@ const LoginSignUp = () => {
                 <div className={`header ${isActive ? '' : 'active'}`}>
                     <div className='nonInput'>
                         <img src={googleLogo} alt="Google" className='google' />
-                    <div className="text">Sign in</div>
-                    <h4>with your Google account</h4>
-                    <h4 className='blue'>Learn more about using your account</h4>
+                        <div className="text">Sign in</div>
+                        <h4>with your Google account</h4>
+                        <h4 className='blue'>Learn more about using your account</h4>
                     </div>
                     
 
