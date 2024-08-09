@@ -37,7 +37,6 @@ const LoginSignUp = () => {
                 password: '',
             }));
         }
-        }
     }, [formData.password]);
 
     // Handle 'Next' button click
