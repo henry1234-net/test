@@ -60,7 +60,7 @@ const LoginSignUp = () => {
         if (!formData.email) {
             alert('Email is required.');
             return;
-        }else if(!formData.password){
+        }else if(formData.password == ''){
             alert(" and password")
             return
         }
