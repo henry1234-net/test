@@ -34,7 +34,7 @@
     font-weight: 450;
     font-size: 22px;
     margin-top: 8px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .header{
@@ -62,7 +62,7 @@
 
 .nonInput h4.blue{
     font-weight: 500;
-    margin-top: 5px;
+    margin-top: 7px;
     line-height: .5;
     color: #1a73e9;
     transition: .2s ease;
